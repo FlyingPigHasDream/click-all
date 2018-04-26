@@ -1,0 +1,80 @@
+package com.click.clickall.pinganClick;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+public class DoPOSTParam {
+
+
+
+
+
+    public static void main(String[] args) throws Exception {
+        int count = 100;
+        int num;
+        int thisNum = 0;
+
+        // 创建Httpclient对象
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+
+        // 创建http POST请求
+        HttpPost httpPost = new HttpPost("http://pacx.51ideal.com/index.php/api/praised");
+        int[] sum = new int[]{ 110, 111, 108, 107, 138, 137};
+        //int[] sum = new int[]{ 138, 137};
+        while (thisNum < count) {
+            for (int i = 0; i < 6; i++) {
+                num = sum[i];
+                DoPOSTParam.postClick(httpclient,httpPost,num);
+            }
+            thisNum ++;
+            System.out.println("thisNum = " + thisNum);
+            Thread.sleep(1000);
+        }
+
+
+    }
+
+
+    private static int  postClick(CloseableHttpClient httpclient, HttpPost httpPost, int num) throws IOException, InterruptedException {
+        // 设置2个post参数，一个是scope、一个是q
+        List<NameValuePair> parameters = new ArrayList<NameValuePair>(0);
+        parameters.add(new BasicNameValuePair("beenPraisedId", String.valueOf(num)));
+        // 构造一个form表单式的实体
+        UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(parameters);
+        // 将请求实体设置到httpPost对象中
+        httpPost.setEntity(formEntity);
+
+        CloseableHttpResponse response = null;
+        try {
+
+                // 执行请求
+                response = httpclient.execute(httpPost);
+                // 判断返回状态是否为200
+                if (response.getStatusLine().getStatusCode() == 200) {
+                    String content = EntityUtils.toString(response.getEntity(), "UTF-8");
+                    System.out.println(content);
+                }
+
+
+                //Thread.sleep(1000);
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+
+        }
+
+        return 0;
+    }
+
+}
