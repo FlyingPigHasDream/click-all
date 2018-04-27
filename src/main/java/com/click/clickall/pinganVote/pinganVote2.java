@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 投票线程1
+ * 投票线程2
  * @author LiaoYangJun
  * @createTime 2018/4/25.
  */
-public class pinganVote {
+public class pinganVote2 {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -63,7 +63,7 @@ public class pinganVote {
             parameters.add(new BasicNameValuePair("name", name));
             parameters.add(new BasicNameValuePair("pass", pass));
             String returmStr = "";
-            returmStr = pinganVote.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/reg", parameters);
+            returmStr = pinganVote2.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/reg", parameters);
             System.out.println("returmStr=" + returmStr);
             // 登陆
 
@@ -71,7 +71,7 @@ public class pinganVote {
             List<NameValuePair> parameters1 = new ArrayList<NameValuePair>(0);
             parameters1.add(new BasicNameValuePair("email", email));
             parameters1.add(new BasicNameValuePair("pass", pass));
-            returmStr = pinganVote.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/login", parameters1);
+            returmStr = pinganVote2.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/login", parameters1);
 
             JSONObject obj = JSON.parseObject(returmStr);
             JSONObject tokenObj = JSON.parseObject(obj.getString("data"));
@@ -83,9 +83,9 @@ public class pinganVote {
             // 投票
             for (int i = 0; i < 3; i++) {
                 List<NameValuePair> parameters2 = new ArrayList<NameValuePair>(0);
-                parameters2.add(new BasicNameValuePair("work_id", "38"));
+                parameters2.add(new BasicNameValuePair("work_id", "63"));
                 parameters2.add(new BasicNameValuePair("token", token));
-                returmStr = pinganVote.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/vote2", parameters2);
+                returmStr = pinganVote2.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/vote2", parameters2);
                 System.out.println("returmStr=" + returmStr);
 
             }

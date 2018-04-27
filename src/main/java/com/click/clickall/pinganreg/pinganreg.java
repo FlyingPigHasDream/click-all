@@ -1,4 +1,4 @@
-package com.click.clickall.pinganVote;
+package com.click.clickall.pinganreg;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -18,11 +18,13 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 投票线程1
+ * 注册
+ * 987709 + 0~3000
+ *"email=9877092999%40qq.com&phone=18865814478&name=%3F%3F&pass=9877092999"
  * @author LiaoYangJun
  * @createTime 2018/4/25.
  */
-public class pinganVote {
+public class pinganreg {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -35,13 +37,13 @@ public class pinganVote {
         // 创建Httpclient对象
         CloseableHttpClient httpclient = HttpClients.createDefault();
         Random rand =new Random();
-        for (int j = 0; j < 80; j++) {
-            String email = "8";
-            String pass = "";
+        for (int j = 0; j < 3000; j++) {
+            String email = "";
+            String pass = "987709";
             String name = nameArray[rand.nextInt(namelength)];
             String phone = "188";
 
-            System.out.println("name = " +  name);
+ /*           System.out.println("name = " +  name);
             for (int e = 0; e < 8; e++) {
                 email += rand.nextInt(10);
             }
@@ -51,10 +53,13 @@ public class pinganVote {
             pass = email;
             System.out.println("pass =" + pass);
             email += "@qq.com";
-            System.out.println("email = " + email);
+            System.out.println("email = " + email);*/
             for (int k = 0; k < 8; k++) {
                 phone +=  rand.nextInt(10);
             }
+            pass = pass + j;
+            email = pass + "@qq.com";
+            System.out.println(pass);
             System.out.println("phone=" + phone);
             // 注册
             List<NameValuePair> parameters = new ArrayList<NameValuePair>(0);
@@ -63,32 +68,10 @@ public class pinganVote {
             parameters.add(new BasicNameValuePair("name", name));
             parameters.add(new BasicNameValuePair("pass", pass));
             String returmStr = "";
-            returmStr = pinganVote.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/reg", parameters);
-            System.out.println("returmStr=" + returmStr);
-            // 登陆
-
-            //CloseableHttpClient httpclient1 = HttpClients.createDefault();
-            List<NameValuePair> parameters1 = new ArrayList<NameValuePair>(0);
-            parameters1.add(new BasicNameValuePair("email", email));
-            parameters1.add(new BasicNameValuePair("pass", pass));
-            returmStr = pinganVote.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/login", parameters1);
-
-            JSONObject obj = JSON.parseObject(returmStr);
-            JSONObject tokenObj = JSON.parseObject(obj.getString("data"));
-            System.out.println(tokenObj.getString("token"));
-            String token = tokenObj.getString("token");
+            returmStr = pinganreg.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/reg", parameters);
             System.out.println("returmStr=" + returmStr);
 
 
-            // 投票
-            for (int i = 0; i < 3; i++) {
-                List<NameValuePair> parameters2 = new ArrayList<NameValuePair>(0);
-                parameters2.add(new BasicNameValuePair("work_id", "38"));
-                parameters2.add(new BasicNameValuePair("token", token));
-                returmStr = pinganVote.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/vote2", parameters2);
-                System.out.println("returmStr=" + returmStr);
-
-            }
 
         }
 

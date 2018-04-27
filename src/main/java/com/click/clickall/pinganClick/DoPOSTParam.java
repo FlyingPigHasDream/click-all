@@ -15,12 +15,8 @@ import org.apache.http.util.EntityUtils;
 
 public class DoPOSTParam {
 
-
-
-
-
     public static void main(String[] args) throws Exception {
-        int count = 100;
+        int count = 400;
         int num;
         int thisNum = 0;
 
