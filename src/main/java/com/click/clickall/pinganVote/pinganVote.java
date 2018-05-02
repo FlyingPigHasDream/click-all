@@ -95,7 +95,7 @@ public class pinganVote {
     }
 
 
-    private static String  postClick(CloseableHttpClient httpclient, String httpPostUrl, List<NameValuePair> parameters) throws IOException, InterruptedException {
+    public static String  postClick(CloseableHttpClient httpclient, String httpPostUrl, List<NameValuePair> parameters) throws IOException, InterruptedException {
         String returnSst = "";
         // 创建http POST请求
         HttpPost httpPost = new HttpPost(httpPostUrl);

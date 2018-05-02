@@ -16,7 +16,7 @@ import org.apache.http.util.EntityUtils;
 public class DoPOSTParam {
 
     public static void main(String[] args) throws Exception {
-        int count = 400;
+        int count = 1000;
         int num;
         int thisNum = 0;
 
@@ -34,7 +34,7 @@ public class DoPOSTParam {
             }
             thisNum ++;
             System.out.println("thisNum = " + thisNum);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }
 
 
