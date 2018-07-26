@@ -3,7 +3,6 @@ package com.click.clickall.limitip;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.click.clickall.pinganVote.pinganVote;
-import com.click.clickall.pinganVote.pinganVote2;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -15,20 +14,19 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.io.OutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Random;
+
 /**
- * 注册到投票一条龙
+ * 注册
  * @author LiaoYangJun
  * @createTime 2018/5/2.
  */
-public class Post {
+public class reg {
 
     public static final String[] ipArrays = {
             "66.102.251.", "112.211.0.", "141.8.225.","159.106.121.",
@@ -253,7 +251,7 @@ public class Post {
                         "diehan6846927@sina.com----XT3kdKq1#" +
                         "chilong29681@sina.com----4aL0OEb1#" +
                         "jingjia7149780@sina.com----P5988eKE#"
-                ;
+                       ;
 
         String[] all = emailUsAll.split("#");
 
@@ -282,7 +280,7 @@ public class Post {
             // 发送邮箱
             String emailParam = "email=" + emailUs;
             post(sendEmialUrl,emailParam);
-            Thread.sleep(20000);
+            Thread.sleep(50000);
             // 获取验证码
             String  msg = ShowMail.getAllEmail(emailUs, emailPs);
             System.out.println("msg=" + msg);
@@ -295,7 +293,7 @@ public class Post {
             String regParms = "email=" + emailUs +  "&phone=18966662533&name=张斌&pass=liao894779&checkcode="+ checkcode;
             post(regUrl,regParms);
 
-
+/*
             // 登陆
             String returmStr = "";
             //CloseableHttpClient httpclient1 = HttpClients.createDefault();
@@ -303,8 +301,8 @@ public class Post {
             parameters1.add(new BasicNameValuePair("email", emailUs));
             parameters1.add(new BasicNameValuePair("pass", "liao894779"));
             returmStr = pinganVote.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/login", parameters1);
-         /*   String loginParm = "email=" + emailUs + "&pass" + emailPs;
-            post(loginUrl, loginParm);*/
+         *//*   String loginParm = "email=" + emailUs + "&pass" + emailPs;
+            post(loginUrl, loginParm);*//*
 
             System.out.println("data = " + returmStr);
             JSONObject obj = JSON.parseObject(returmStr);
@@ -318,12 +316,12 @@ public class Post {
             for (int j = 0; j < 3; j++) {
                 List<NameValuePair> parameters2 = new ArrayList<NameValuePair>(0);
                 parameters2.add(new BasicNameValuePair("work_id", "11319"));
-                parameters2.add(new BasicNameValuePair("token", token));
+                parameters2.add(new BasicNameValuePair("1131911319", token));
                 returmStr = pinganVote.postClick(httpclient, "http://pacx.51ideal.com/index.php/api/vote2", parameters2);
                 System.out.println("returmStr=" + returmStr);
                 String voteParm = "work_id=11319&token=" + token;
                 post(voteUrl, voteParm);
-            }
+            }*/
 
 
         }

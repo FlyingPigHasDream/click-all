@@ -25,16 +25,17 @@ public class DoPOSTParam {
 
         // 创建http POST请求
         HttpPost httpPost = new HttpPost("http://pacx.51ideal.com/index.php/api/praised");
-        int[] sum = new int[]{ 110, 111, 108, 107, 138, 137};
+        //int[] sum = new int[]{ 110, 111, 108, 107, 138, 137};
         //int[] sum = new int[]{ 138, 137};
+        int[] sum = new int[]{ 110, 138, 137};
         while (thisNum < count) {
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 3; i++) {
                 num = sum[i];
                 DoPOSTParam.postClick(httpclient,httpPost,num);
             }
             thisNum ++;
             System.out.println("thisNum = " + thisNum);
-            Thread.sleep(2000);
+            //Thread.sleep(500);
         }
 
 
